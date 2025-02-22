@@ -1,31 +1,4 @@
 sequenceDiagram
+user->>browser: write text
 user->>browser: click in 'save' bottom 
-browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-
-browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
-activate server
-server->>browser: HTML document
-deactivate server
-
-browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
-activate server
-server->>browser: css file
-deactivate server
-
-browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
-activate server
-server->>browser: js file
-deactivate server
-
-browser execute: GET chrome-extension://fjoaledfpmneenckfbpdfhkmimnjocfa/csNotification.bundle.css
-
-browser execute: GET https://fonts.googleapis.com/css?family=Lato
-
-browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
-activate server
-server->>browser: json file
-deactivate 
-
-browser execute: GET https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjx4wXiWtFCc.woff2
-
-browser->>user: user see the updated form.
+browser->>user: the updated form.
