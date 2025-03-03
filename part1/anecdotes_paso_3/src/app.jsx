@@ -8,6 +8,27 @@ const Title = ({text}) => {
   )
 }
 
+const Body = ({text}) => {
+  return(
+    <div>
+      {text}
+    </div>
+  )
+}
+
+const Votes = ({value}) => {
+  if (isNaN(value)){
+    return(
+      <div></div>
+    )
+  }
+  return(
+    <div>
+      has {value} votes
+    </div>
+  )
+}
+
 const Button = ({ handleClick, text }) => (
   <button onClick={handleClick}>
     {text}
@@ -42,18 +63,23 @@ const App = () => {
     setVotes(prevVotes => ({
       ...prevVotes,
       [selected]: prevVotes[selected] + 1
-    }));  
+    }));
   }
 
+  const highestVotedIndex = Object.keys(votes).reduce((max, key) =>
+    votes[key] > votes[max] ? key : max, 0
+  );
 
   return (
     <div>
       <Title text={first_title}></Title>
-      <div>{anecdotes[selected]}</div>
-      <div>has {votes[selected]} votes</div>
+      <Body text = {anecdotes[selected]}></Body>
+      <Votes value = {votes[selected]}></Votes>
       <Button handleClick = {handleVoteClick} text='vote' />
       <Button handleClick = {handleRandomClick} text='next anecdote' />
       <Title text={second_title}></Title>
+      <Body text = {anecdotes[highestVotedIndex]}></Body>
+      <Votes value = {votes[highestVotedIndex]}></Votes>
     </div>
   )
 }
